@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Qwen3.8-Flash-Next Explorer 项目文档">
+  <title>Document · Qwen3.8 Flash Next Explorer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235b4ff5'/%3E%3Cpath d='M19 32c0-10 5-16 13-16s13 6 13 16c0 7-3 12-8 15l7 5h-9l-4-3c-7 0-12-7-12-17zm8 0c0 7 2 10 5 10s5-3 5-10-2-10-5-10-5 3-5 10z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=2.1.0">
+</head>
+<body class="document-page">
+  <header class="app-header">
+    <a class="brand-block brand-link" href="index.html" aria-label="返回分析页面">
+      <div class="brand-mark" aria-hidden="true">Q</div>
+      <div>
+        <h1>Qwen3.8 Flash Next Explorer</h1>
+        <p>架构、容量公式、数据格式与验证说明</p>
+      </div>
+    </a>
+    <nav class="header-actions" aria-label="主导航">
+      <a class="header-nav-link" href="index.html">Explorer</a>
+      <a class="header-nav-link" href="documents.html" aria-current="page">Document</a>
+    </nav>
+  </header>
+
+  <main class="document-shell">
+    <aside class="document-sidebar panel-surface">
+      <div class="document-sidebar-heading">
+        <span class="eyebrow">DOCUMENTATION</span>
+        <h2>项目文档</h2>
+        <p>内容直接读取自 <code>docs/</code></p>
+      </div>
+      <nav id="document-list" class="document-list" aria-label="文档目录"></nav>
+    </aside>
+
+    <section class="document-reader panel-surface" aria-live="polite">
+      <div class="document-toolbar">
+        <button id="document-menu" class="document-menu-button" type="button" aria-expanded="false">目录</button>
+        <span id="document-path">正在读取文档…</span>
+        <a id="raw-document-link" href="#" target="_blank" rel="noreferrer">查看 Markdown</a>
+      </div>
+      <article id="document-content" class="markdown-body">
+        <div class="document-loading">正在载入文档…</div>
+      </article>
+    </section>
+
+    <aside class="document-outline panel-surface" aria-label="页内目录">
+      <span class="eyebrow">ON THIS PAGE</span>
+      <nav id="document-outline"></nav>
+    </aside>
+  </main>
+
+  <template id="document-error-template">
+    <div class="document-error">
+      <h1>文档加载失败</h1>
+      <p>请确认本地服务正在运行，并通过服务地址访问此页面。</p>
+      <code>python3 server.py</code>
+    </div>
+  </template>
+  <script src="documents.js?v=2.1.0" defer></script>
+</body>
+</html>

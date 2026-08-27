@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.1.0",
+  "default_profile": "bf16",
+  "profiles": [
+    {
+      "id": "bf16",
+      "display_name": "BF16 KV",
+      "description": "QSA K/V 与 Indexer key 使用 BF16；GDN recurrent state 按官方配置固定 FP32。",
+      "nope_bpw": 16,
+      "rope_bpw": 16,
+      "index_bpw": 16,
+      "conv_bpw": 16
+    },
+    {
+      "id": "fp8-mixed-rope",
+      "display_name": "FP8 + BF16 RoPE",
+      "description": "QSA 非 RoPE K/V 与 Indexer key 按 FP8 估算，64 维 RoPE key 保持 BF16；GDN recurrent state 仍为 FP32。",
+      "nope_bpw": 8,
+      "rope_bpw": 16,
+      "index_bpw": 8,
+      "conv_bpw": 8
+    },
+    {
+      "id": "int8-mixed-rope",
+      "display_name": "INT8 + BF16 RoPE",
+      "description": "QSA 非 RoPE K/V 与 Indexer key 按 INT8 估算，RoPE key 保持 BF16。",
+      "nope_bpw": 8,
+      "rope_bpw": 16,
+      "index_bpw": 8,
+      "conv_bpw": 8
+    },
+    {
+      "id": "int4-mixed-rope",
+      "display_name": "INT4 + BF16 RoPE",
+      "description": "QSA 非 RoPE K/V 与 Indexer key 按 INT4 估算，RoPE key 保持 BF16；未计量化元数据。",
+      "nope_bpw": 4,
+      "rope_bpw": 16,
+      "index_bpw": 4,
+      "conv_bpw": 8
+    }
+  ]
+}

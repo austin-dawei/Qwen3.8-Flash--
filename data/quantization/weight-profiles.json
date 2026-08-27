@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.1.0",
+  "default_profile": "bf16-checkpoint",
+  "profiles": [
+    {
+      "id": "bf16-checkpoint",
+      "display_name": "官方 BF16 Checkpoint",
+      "description": "按开源仓库 131 个 safetensors 分片的 BF16 权重计算；35 个 N-gram 哈希元数据元素保持 INT64。",
+      "formats": {
+        "standard_linear": {"type": "fixed_bpw", "bpw": 16},
+        "expert_linear": {"type": "fixed_bpw", "bpw": 16},
+        "shared_expert_linear": {"type": "fixed_bpw", "bpw": 16},
+        "router": {"type": "fixed_bpw", "bpw": 16},
+        "embedding": {"type": "fixed_bpw", "bpw": 16},
+        "ngram_embedding": {"type": "fixed_bpw", "bpw": 16},
+        "lm_head": {"type": "fixed_bpw", "bpw": 16},
+        "mtp_projection": {"type": "fixed_bpw", "bpw": 16},
+        "vision_linear": {"type": "fixed_bpw", "bpw": 16}
+      }
+    },
+    {
+      "id": "hybrid-w4-fp8",
+      "display_name": "W4.25 Experts + FP8 Dense",
+      "description": "部署估算：路由专家按有效 4.25 BPW，其余 Linear 按 FP8 block-128；Embedding、N-gram 与 LM Head 保持 BF16。",
+      "formats": {
+        "standard_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "expert_linear": {"type": "effective_bpw", "bpw": 4.25},
+        "shared_expert_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "router": {"type": "fixed_bpw", "bpw": 16},
+        "embedding": {"type": "fixed_bpw", "bpw": 16},
+        "ngram_embedding": {"type": "fixed_bpw", "bpw": 16},
+        "lm_head": {"type": "fixed_bpw", "bpw": 16},
+        "mtp_projection": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "vision_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8}
+      }
+    },
+    {
+      "id": "fp8",
+      "display_name": "FP8 block-128 估算",
+      "description": "所有大矩阵按 FP8 权重加每 128×128 block 一个 8-bit scale；小型 Norm、Bias 与卷积保持 BF16。",
+      "formats": {
+        "standard_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "expert_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "shared_expert_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "router": {"type": "fixed_bpw", "bpw": 16},
+        "embedding": {"type": "fixed_bpw", "bpw": 16},
+        "ngram_embedding": {"type": "fixed_bpw", "bpw": 16},
+        "lm_head": {"type": "fixed_bpw", "bpw": 16},
+        "mtp_projection": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8},
+        "vision_linear": {"type": "fp8_block", "block_rows": 128, "block_cols": 128, "scale_bits": 8}
+      }
+    },
+    {
+      "id": "w4-effective-425",
+      "display_name": "W4.25 全矩阵估算",
+      "description": "所有可量化矩阵按 4.25 bit/weight 计入权重与元数据，用于紧凑部署的容量比较。",
+      "formats": {
+        "standard_linear": {"type": "effective_bpw", "bpw": 4.25},
+        "expert_linear": {"type": "effective_bpw", "bpw": 4.25},
+        "shared_expert_linear": {"type": "effective_bpw", "bpw": 4.25},
+        "router": {"type": "effective_bpw", "bpw": 4.25},
+        "embedding": {"type": "effective_bpw", "bpw": 4.25},
+        "ngram_embedding": {"type": "effective_bpw", "bpw": 4.25},
+        "lm_head": {"type": "effective_bpw", "bpw": 4.25},
+        "mtp_projection": {"type": "effective_bpw", "bpw": 4.25},
+        "vision_linear": {"type": "effective_bpw", "bpw": 4.25}
+      }
+    },
+    {
+      "id": "w4-raw",
+      "display_name": "W4 理论下限",
+      "description": "可量化矩阵仅按 4-bit 权重本体计算，不含 scale/zero-point 等元数据，不代表实际运行占用。",
+      "formats": {
+        "standard_linear": {"type": "effective_bpw", "bpw": 4},
+        "expert_linear": {"type": "effective_bpw", "bpw": 4},
+        "shared_expert_linear": {"type": "effective_bpw", "bpw": 4},
+        "router": {"type": "effective_bpw", "bpw": 4},
+        "embedding": {"type": "effective_bpw", "bpw": 4},
+        "ngram_embedding": {"type": "effective_bpw", "bpw": 4},
+        "lm_head": {"type": "effective_bpw", "bpw": 4},
+        "mtp_projection": {"type": "effective_bpw", "bpw": 4},
+        "vision_linear": {"type": "effective_bpw", "bpw": 4}
+      }
+    }
+  ]
+}

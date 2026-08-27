@@ -1,0 +1,16 @@
+{
+  "ngram_quantization": "inherit",
+  "vision_quantization": "inherit",
+  "mtp_quantization": "inherit",
+  "schema_version": "1.1.0",
+  "name": "default",
+  "model_id": "qwen3.8-flash-next",
+  "weight_quantization": "bf16-checkpoint",
+  "kv_cache_quantization": "bf16",
+  "context_length": 262144,
+  "batch_size": 1,
+  "include_ngram": true,
+  "include_vision": true,
+  "include_mtp": true,
+  "operator_detail": "module"
+}

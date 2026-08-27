@@ -1,0 +1,874 @@
+{
+  "schema_version": "1.1.0",
+  "model_id": "qwen3.8-flash-next",
+  "source_revision": "f5d08274bafd880402bd16f5e3e6c514136ec06c",
+  "generated_at": "2026-08-27T02:39:56.664Z",
+  "scenario": {
+    "ngram_quantization": "inherit",
+    "vision_quantization": "inherit",
+    "mtp_quantization": "inherit",
+    "schema_version": "1.1.0",
+    "name": "default",
+    "model_id": "qwen3.8-flash-next",
+    "weight_quantization": "bf16-checkpoint",
+    "kv_cache_quantization": "bf16",
+    "context_length": 262144,
+    "batch_size": 1,
+    "include_ngram": true,
+    "include_vision": true,
+    "include_mtp": true,
+    "operator_detail": "module"
+  },
+  "weight_profile": "bf16-checkpoint",
+  "kv_cache_profile": "bf16",
+  "formula_ids": [
+    "logical_parameter_count_v1",
+    "weight_storage_fixed_bpw_v1",
+    "weight_storage_fp8_block_v1",
+    "qsa_kv_cache_capacity_v1",
+    "gdn_recurrent_state_capacity_v1",
+    "layer_weight_ratio_v1"
+  ],
+  "totals": {
+    "logical_params": 179999981459,
+    "global_weight_bytes": 3453786592,
+    "weight_bytes": 359999963128,
+    "kv_cache_bytes": 7968116752,
+    "weight_plus_kv_bytes": 367968079880
+  },
+  "layers": [
+    {
+      "resultKey": "main:0",
+      "index": 0,
+      "label": "Layer 0",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:1",
+      "index": 1,
+      "label": "Layer 1",
+      "kind": "decoder",
+      "logical_params": 53827064579,
+      "weight_bytes": 107654129368,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 184336,
+        "total_bytes": 3411984
+      },
+      "weight_ratio": 0.2990392788727119
+    },
+    {
+      "resultKey": "main:2",
+      "index": 2,
+      "label": "Layer 2",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:3",
+      "index": 3,
+      "label": "Layer 3",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:4",
+      "index": 4,
+      "label": "Layer 4",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:5",
+      "index": 5,
+      "label": "Layer 5",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:6",
+      "index": 6,
+      "label": "Layer 6",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:7",
+      "index": 7,
+      "label": "Layer 7",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:8",
+      "index": 8,
+      "label": "Layer 8",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:9",
+      "index": 9,
+      "label": "Layer 9",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:10",
+      "index": 10,
+      "label": "Layer 10",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:11",
+      "index": 11,
+      "label": "Layer 11",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:12",
+      "index": 12,
+      "label": "Layer 12",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:13",
+      "index": 13,
+      "label": "Layer 13",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:14",
+      "index": 14,
+      "label": "Layer 14",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:15",
+      "index": 15,
+      "label": "Layer 15",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:16",
+      "index": 16,
+      "label": "Layer 16",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:17",
+      "index": 17,
+      "label": "Layer 17",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:18",
+      "index": 18,
+      "label": "Layer 18",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:19",
+      "index": 19,
+      "label": "Layer 19",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:20",
+      "index": 20,
+      "label": "Layer 20",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:21",
+      "index": 21,
+      "label": "Layer 21",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:22",
+      "index": 22,
+      "label": "Layer 22",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:23",
+      "index": 23,
+      "label": "Layer 23",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:24",
+      "index": 24,
+      "label": "Layer 24",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:25",
+      "index": 25,
+      "label": "Layer 25",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:26",
+      "index": 26,
+      "label": "Layer 26",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:27",
+      "index": 27,
+      "label": "Layer 27",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:28",
+      "index": 28,
+      "label": "Layer 28",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:29",
+      "index": 29,
+      "label": "Layer 29",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:30",
+      "index": 30,
+      "label": "Layer 30",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:31",
+      "index": 31,
+      "label": "Layer 31",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:32",
+      "index": 32,
+      "label": "Layer 32",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:33",
+      "index": 33,
+      "label": "Layer 33",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:34",
+      "index": 34,
+      "label": "Layer 34",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:35",
+      "index": 35,
+      "label": "Layer 35",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:36",
+      "index": 36,
+      "label": "Layer 36",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:37",
+      "index": 37,
+      "label": "Layer 37",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:38",
+      "index": 38,
+      "label": "Layer 38",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:39",
+      "index": 39,
+      "label": "Layer 39",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:40",
+      "index": 40,
+      "label": "Layer 40",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:41",
+      "index": 41,
+      "label": "Layer 41",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:42",
+      "index": 42,
+      "label": "Layer 42",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:43",
+      "index": 43,
+      "label": "Layer 43",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "main:44",
+      "index": 44,
+      "label": "Layer 44",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:45",
+      "index": 45,
+      "label": "Layer 45",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:46",
+      "index": 46,
+      "label": "Layer 46",
+      "kind": "decoder",
+      "logical_params": 2593979104,
+      "weight_bytes": 5187958208,
+      "kv_cache": {
+        "main_cache_bytes": 0,
+        "index_cache_bytes": 0,
+        "recurrent_state_bytes": 3145728,
+        "conv_state_bytes": 81920,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 3227648
+      },
+      "weight_ratio": 0.014410996498228508
+    },
+    {
+      "resultKey": "main:47",
+      "index": 47,
+      "label": "Layer 47",
+      "kind": "decoder",
+      "logical_params": 2587467008,
+      "weight_bytes": 5174934016,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.014374818183411934
+    },
+    {
+      "resultKey": "aux:48",
+      "index": 48,
+      "label": "MTP 0",
+      "kind": "mtp",
+      "logical_params": 2607150848,
+      "weight_bytes": 5214301696,
+      "kv_cache": {
+        "main_cache_bytes": 536870912,
+        "index_cache_bytes": 67108864,
+        "recurrent_state_bytes": 0,
+        "conv_state_bytes": 0,
+        "auxiliary_state_bytes": 0,
+        "total_bytes": 603979776
+      },
+      "weight_ratio": 0.01448417286127895
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "model-spec.schema.json",
+  "title": "Qwen3.8-Flash-Next semantic model specification",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generator_version",
+    "model_id",
+    "source",
+    "architecture",
+    "global_parameter_groups",
+    "layers",
+    "auxiliary_layers",
+    "operator_graphs",
+    "formula_ids"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.1.0" },
+    "generator_version": { "type": "string" },
+    "model_id": { "const": "qwen3.8-flash-next" },
+    "display_name": { "type": "string" },
+    "architecture": {
+      "type": "object",
+      "required": ["main_layer_count", "hidden_size", "routed_experts", "experts_per_token"]
+    },
+    "layers": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48
+    },
+    "auxiliary_layers": { "type": "array" },
+    "global_parameter_groups": { "type": "array" },
+    "operator_graphs": { "type": "object" },
+    "formula_ids": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

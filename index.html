@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Qwen3.8-Flash-Next 模型结构、算子和容量分析工具">
+  <title>Qwen3.8 Flash Next Explorer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235b4ff5'/%3E%3Cpath d='M19 32c0-10 5-16 13-16s13 6 13 16c0 7-3 12-8 15l7 5h-9l-4-3c-7 0-12-7-12-17zm8 0c0 7 2 10 5 10s5-3 5-10-2-10-5-10-5 3-5 10z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=2.1.0">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-block">
+      <div class="brand-mark" aria-hidden="true">Q</div>
+      <div>
+        <h1>Qwen3.8 Flash Next Explorer</h1>
+        <p>Qwen4 实验架构 · Weight / State 容量分析 · 公式可追溯</p>
+      </div>
+    </div>
+    <nav class="header-actions" aria-label="主导航">
+      <a class="header-nav-link" href="documents.html">Document</a>
+      <a class="source-chip" id="source-chip" href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" target="_blank" rel="noreferrer">正在读取官方模型数据…</a>
+    </nav>
+  </header>
+
+  <div class="loading-screen" id="loading-screen" role="status">
+    <div class="loading-orbit" aria-hidden="true"></div>
+    <p>正在构建模型视图</p>
+  </div>
+
+  <main class="app-shell" id="app-shell" hidden>
+    <aside class="control-panel panel-surface" aria-label="分析配置">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">SCENARIO</span>
+          <h2>分析配置</h2>
+        </div>
+        <span class="live-dot" aria-label="自动计算"></span>
+      </div>
+
+      <div class="control-section">
+        <label for="weight-profile">Weight 量化</label>
+        <select id="weight-profile"></select>
+        <p class="field-hint" id="weight-profile-description"></p>
+      </div>
+
+      <div class="control-section">
+        <label for="kv-profile">KV cache 量化</label>
+        <select id="kv-profile"></select>
+        <p class="field-hint" id="kv-profile-description"></p>
+      </div>
+
+      <div class="control-grid">
+        <div class="control-section">
+          <label for="context-length">Context</label>
+          <select id="context-length">
+            <option value="32768">32K</option>
+            <option value="65536">64K</option>
+            <option value="131072">128K</option>
+            <option value="262144">256K</option>
+            <option value="524288">512K</option>
+            <option value="1000000">1M YaRN</option>
+          </select>
+        </div>
+        <div class="control-section">
+          <label for="batch-size">Batch</label>
+          <input id="batch-size" type="number" min="1" max="1024" step="1" value="1">
+        </div>
+      </div>
+
+      <div class="control-section hierarchy-hint">
+        <span class="hierarchy-label">算子粒度</span>
+        <strong>单击查看，双击展开</strong>
+        <p>单击算子查看信息；双击 Gated Residual、GDN、QSA、N-gram PLE 或 MoE，只展开当前模块。</p>
+      </div>
+
+      <label class="switch-row" for="include-ngram">
+        <span>
+          <strong>计入 N-gram Embedding</strong>
+          <small>51.2B，可从 Host Memory 异步预取</small>
+        </span>
+        <span class="switch-control">
+          <input id="include-ngram" type="checkbox" checked>
+          <span aria-hidden="true"></span>
+        </span>
+      </label>
+      <div class="component-quant-row">
+        <label for="ngram-profile">N-gram 量化</label>
+        <select id="ngram-profile" aria-label="N-gram Embedding 量化">
+          <option value="inherit">跟随全局 Weight</option>
+          <option value="bf16">BF16</option>
+          <option value="fp8">FP8 block-128</option>
+          <option value="w4-effective-425">W4.25 有效位宽</option>
+          <option value="w4-raw">W4 理论下限</option>
+        </select>
+      </div>
+
+      <label class="switch-row" for="include-vision">
+        <span>
+          <strong>计入 Vision Tower</strong>
+          <small>27 层 ViT 与 2560 维 merger</small>
+        </span>
+        <span class="switch-control">
+          <input id="include-vision" type="checkbox" checked>
+          <span aria-hidden="true"></span>
+        </span>
+      </label>
+      <div class="component-quant-row">
+        <label for="vision-profile">Vision 量化</label>
+        <select id="vision-profile" aria-label="Vision Tower 量化">
+          <option value="inherit">跟随全局 Weight</option>
+          <option value="bf16">BF16</option>
+          <option value="fp8">FP8 block-128</option>
+          <option value="w4-effective-425">W4.25 有效位宽</option>
+          <option value="w4-raw">W4 理论下限</option>
+        </select>
+      </div>
+
+      <label class="switch-row" for="include-mtp">
+        <span>
+          <strong>计入 MTP 辅助层</strong>
+          <small>独立新增约 2.61B 权重与 1 层 QSA</small>
+        </span>
+        <span class="switch-control">
+          <input id="include-mtp" type="checkbox" checked>
+          <span aria-hidden="true"></span>
+        </span>
+      </label>
+      <div class="component-quant-row">
+        <label for="mtp-profile">MTP 量化</label>
+        <select id="mtp-profile" aria-label="MTP 辅助层量化">
+          <option value="inherit">跟随全局 Weight</option>
+          <option value="bf16">BF16</option>
+          <option value="fp8">FP8 block-128</option>
+          <option value="w4-effective-425">W4.25 有效位宽</option>
+          <option value="w4-raw">W4 理论下限</option>
+        </select>
+      </div>
+
+      <div class="scenario-tools">
+        <div class="scenario-name-row">
+          <label for="scenario-name">场景名称</label>
+          <input id="scenario-name" value="default" maxlength="80">
+        </div>
+        <button class="primary-button" id="save-local" type="button">保存场景与结果</button>
+        <div class="button-pair">
+          <button class="secondary-button" id="export-scenario" type="button">导出场景</button>
+          <button class="secondary-button" id="export-analysis" type="button">导出结果</button>
+        </div>
+        <label class="file-button" for="import-scenario">导入场景 JSON</label>
+        <input id="import-scenario" class="visually-hidden" type="file" accept="application/json,.json">
+      </div>
+
+      <div class="saved-scenarios">
+        <label for="saved-scenario-select">本地场景</label>
+        <div class="saved-row">
+          <select id="saved-scenario-select">
+            <option value="">暂无或未连接本地服务</option>
+          </select>
+          <button class="icon-button" id="load-scenario" type="button" aria-label="加载所选场景">载入</button>
+        </div>
+      </div>
+
+      <p class="status-message" id="status-message" aria-live="polite"></p>
+    </aside>
+
+    <section class="workspace">
+      <section class="metric-strip" aria-label="模型容量概览">
+        <article class="metric-card">
+          <span>存储元素</span>
+          <strong id="metric-params">—</strong>
+          <small id="metric-params-note">含 MTP</small>
+        </article>
+        <article class="metric-card">
+          <span>Weight</span>
+          <strong id="metric-weight">—</strong>
+          <small id="metric-weight-note">—</small>
+        </article>
+        <article class="metric-card">
+          <span>KV cache</span>
+          <strong id="metric-kv">—</strong>
+          <small id="metric-kv-note">—</small>
+        </article>
+        <article class="metric-card metric-card-accent">
+          <span>Weight + KV</span>
+          <strong id="metric-total">—</strong>
+          <small>不含 activation 与运行时 workspace</small>
+        </article>
+      </section>
+
+      <div class="explorer-grid">
+        <section class="layer-panel panel-surface" aria-label="模型 Layer 列表">
+          <div class="panel-heading compact-heading">
+            <div>
+              <span class="eyebrow">48 HYBRID BLOCKS</span>
+              <h2>Layer 地图</h2>
+            </div>
+            <div class="legend-inline" aria-label="Layer 类型图例">
+              <span><i class="legend-dot gdn"></i>GDN</span>
+              <span><i class="legend-dot qsa"></i>QSA</span>
+              <span><i class="legend-dot ple"></i>PLE</span>
+            </div>
+          </div>
+
+          <div class="model-facts" id="model-facts"></div>
+
+          <div class="layer-list-header">
+            <span>Layer / cache</span>
+            <span>Weight</span>
+          </div>
+          <div class="layer-list" id="layer-list"></div>
+          <div class="aux-layer-section" id="aux-layer-section">
+            <div class="aux-label">辅助层</div>
+            <div id="aux-layer-list"></div>
+          </div>
+        </section>
+
+        <section class="detail-panel panel-surface" aria-label="Layer 算子连接图">
+          <div class="detail-header">
+            <div>
+              <div class="detail-title-row">
+                <span class="layer-number" id="selected-layer-number">L00</span>
+                <h2 id="selected-layer-title">Layer 0</h2>
+              </div>
+              <p id="selected-layer-subtitle">—</p>
+            </div>
+            <div class="layer-summary" id="layer-summary"></div>
+          </div>
+
+          <div class="graph-toolbar">
+            <div class="graph-legend">
+              <span><i class="legend-dot attention"></i>QSA</span>
+              <span><i class="legend-dot linear-attention"></i>GDN</span>
+              <span><i class="legend-dot moe"></i>MoE</span>
+              <span><i class="legend-dot hc"></i>Gated Residual</span>
+              <span><i class="legend-dot cache"></i>State / Index</span>
+            </div>
+            <div class="graph-navigation">
+              <button class="graph-back-button" id="collapse-module" type="button" hidden>← 返回 Layer 级</button>
+              <span class="graph-help" id="graph-context">单击查看 · 双击展开</span>
+            </div>
+          </div>
+
+          <div class="graph-viewport" id="graph-viewport">
+            <svg id="operator-graph" role="img" aria-labelledby="graph-title graph-description">
+              <title id="graph-title">所选 Layer 的算子连接图</title>
+              <desc id="graph-description">展示 Gated Residual、Gated DeltaNet、Qwen Sparse Attention、N-gram PLE 与 MoE 的数据连接。</desc>
+            </svg>
+          </div>
+
+          <section class="operator-inspector" id="operator-inspector" aria-live="polite">
+            <div class="inspector-placeholder">
+              <span class="inspector-icon" aria-hidden="true">◎</span>
+              <p>选择图中的算子，查看张量 Shape、参数与量化后 Weight。</p>
+            </div>
+          </section>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <template id="error-template">
+    <div class="fatal-error">
+      <h2>模型数据加载失败</h2>
+      <p>请通过本项目的本地服务打开网页，而不是直接双击 HTML 文件。</p>
+      <code>python3 server.py</code>
+    </div>
+  </template>
+
+  <script src="app.js?v=2.1.0" defer></script>
+</body>
+</html>
