@@ -64,6 +64,7 @@ async function loadDocument(slug, updateHistory) {
   docEl.documentPath.textContent = result.path;
   docEl.rawDocumentLink.href = result.path;
   docEl.documentContent.innerHTML = renderMarkdown(result.content);
+  await typesetDocumentMath();
   window.scrollTo({ top: 0, behavior: "instant" });
   document.querySelectorAll(".document-list a").forEach((link) => {
     link.classList.toggle("is-active", link.dataset.slug === slug);
@@ -71,6 +72,12 @@ async function loadDocument(slug, updateHistory) {
   renderOutline();
   document.title = `${item.title} · Qwen3.8 Flash Next Explorer`;
   if (updateHistory) history.pushState({}, "", `?doc=${encodeURIComponent(slug)}`);
+}
+
+async function typesetDocumentMath() {
+  if (!window.MathJax?.typesetPromise) return;
+  if (window.MathJax.typesetClear) window.MathJax.typesetClear([docEl.documentContent]);
+  await window.MathJax.typesetPromise([docEl.documentContent]);
 }
 
 function renderMarkdown(markdown) {

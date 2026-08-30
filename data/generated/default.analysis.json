@@ -2,7 +2,7 @@
   "schema_version": "1.1.0",
   "model_id": "qwen3.8-flash-next",
   "source_revision": "f5d08274bafd880402bd16f5e3e6c514136ec06c",
-  "generated_at": "2026-08-27T02:39:56.664Z",
+  "generated_at": "2026-08-29T15:29:45.194Z",
   "scenario": {
     "ngram_quantization": "inherit",
     "vision_quantization": "inherit",
